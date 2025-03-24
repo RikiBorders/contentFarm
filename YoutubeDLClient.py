@@ -4,7 +4,7 @@ from Logger import Logger
 from Exceptions import BatchDownloadLimitExceededException
 
 class YoutubeDLClient():
-    def __init__(self):
+    def __init__(self, preferredcodec: str='mp3'):
         self.config = {
             'batchDownloadLimit': 3
         }
@@ -12,12 +12,12 @@ class YoutubeDLClient():
             'format': 'bestaudio/best',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
+                'preferredcodec': preferredcodec,
                 'preferredquality': '192',
             }],
         }
         self.logger = Logger('dummyLoggerFilePath')
-        
+
         self.logger.log('YoutubeDL Client started')
 
     def downloadWithUrl(self, url: str, withMetaData: bool=False):
@@ -39,7 +39,6 @@ class YoutubeDLClient():
         '''
         Raises: BatchDownloadLimitExceededException: if number of urls exceed the batch download limit
         '''
-        print(urls)
         if len(urls) > self.config['batchDownloadLimit']:
             raise BatchDownloadLimitExceededException(self.config['batchDownloadLimit'], len(urls))
         
