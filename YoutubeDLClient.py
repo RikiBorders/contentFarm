@@ -3,7 +3,7 @@ import yt_dlp as ytdl
 from Logger import Logger
 from Exceptions import BatchDownloadLimitExceededException
 
-class YoutubeClient():
+class YoutubeDLClient():
     def __init__(self):
         self.config = {
             'batchDownloadLimit': 3
@@ -17,7 +17,8 @@ class YoutubeClient():
             }],
         }
         self.logger = Logger('dummyLoggerFilePath')
-        self.logger.log('Youtube Client started')
+        
+        self.logger.log('YoutubeDL Client started')
 
     def downloadWithUrl(self, url: str, withMetaData: bool=False):
         '''

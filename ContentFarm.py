@@ -1,13 +1,10 @@
-from YoutubeClient import YoutubeClient
+from YoutubeDLClient import YoutubeDLClient
 
 class ContentFarm():
 
     def __init__(self):
-        self.youtubeClient = YoutubeClient()
+        self.youtubeClient = YoutubeDLClient()
         self.uploadIntervalInSeconds = 60
-
-        self.youtubeClient.downloadUrls()
-
 
 if __name__ == '__main__':
     ContentFarm()
